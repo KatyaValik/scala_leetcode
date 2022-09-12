@@ -1,0 +1,18 @@
+class Node(var _value: Int) {
+  var value: Int = _value
+  var children: List[Node] = List()
+}
+
+
+object Solution {
+  def preorder(root: Node): List[Int] = {
+    if (root == null) Nil
+    else root.value :: root.children.foldLeft[List[Int]](List())((res, node) => res ::: preorder(node))
+  }
+}
+
+val a = Node(3)
+a.children = List(Node(5), Node(6))
+val x = Node(1)
+x.children = List(a, Node(2), Node(4))
+Solution.preorder(x)
